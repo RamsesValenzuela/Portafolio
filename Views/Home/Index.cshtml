@@ -1,8 +1,15 @@
-﻿@{
+﻿@model Person
+
+@{
     ViewData["Title"] = "Inicio";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Bienvenido</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">I'm @Model.Name (@Model.age) </h1>
+    <h2>I'm a Software Engineer specialized in JAVA, JAVASCRIPT AND C# development. </h2>
+
+    <img
+        id="Profile_picture"
+        src="~/images/img_2680.png" alt="Ramse's Picture"/>
+
 </div>
