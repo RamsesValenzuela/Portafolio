@@ -2,7 +2,13 @@
 
 namespace Portafolio.Services
 {
-    public class ProjectsRepository
+
+    public interface IProjectsRepository
+    {
+        List<ProjectDTO> getProjects();
+    }
+
+    public class ProjectsRepository: IProjectsRepository
     {
         public List<ProjectDTO> getProjects()
         {
