@@ -4,5 +4,7 @@
     {
         public IEnumerable<ProjectDTO>? ProjectList { get; set; }
 
+        public ExampleGuidModel exampleGuid { get; set; }
+
     }
 }
