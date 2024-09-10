@@ -7,27 +7,29 @@ namespace Portafolio.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private readonly ProjectsRepository projectsRepository;
+        private readonly IProjectsRepository projectsRepository;
 
-        public HomeController(ILogger<HomeController> logger, ProjectsRepository projectsRepository)
+
+        public HomeController(IProjectsRepository projectsRepository)
         {
-            _logger = logger;
+
             this.projectsRepository = projectsRepository;
+
         }
 
         public IActionResult Index()
         {
+
             var person = new Person() {
                 Name = "Ramses Valenzuela",
                 age = 23
-
             };
 
-            
             var projects = projectsRepository.getProjects().Take(2).ToList();
 
-            var model = new HomeIndexDTO() { ProjectList = projects };
+            var model = new HomeIndexDTO() { 
+                ProjectList = projects
+            };
 
             return View(model);
         }
@@ -36,6 +38,19 @@ namespace Portafolio.Controllers
       
         public IActionResult Privacy()
         {
+            return View();
+        }
+
+        public IActionResult Projects()
+        {
+            var projects = projectsRepository.getProjects();
+
+            return View(projects);
+        }
+
+        public IActionResult Contact()
+        {
+
             return View();
         }
 
