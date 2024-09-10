@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Portafolio.Models;
+using Portafolio.Services;
 using System.Diagnostics;
 
 namespace Portafolio.Controllers
@@ -7,10 +8,12 @@ namespace Portafolio.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ProjectsRepository projectsRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ProjectsRepository projectsRepository)
         {
             _logger = logger;
+            this.projectsRepository = projectsRepository;
         }
 
         public IActionResult Index()
@@ -21,7 +24,8 @@ namespace Portafolio.Controllers
 
             };
 
-            var projects = getProjects();
+            
+            var projects = projectsRepository.getProjects().Take(2).ToList();
 
             var model = new HomeIndexDTO() { ProjectList = projects };
 
@@ -29,27 +33,7 @@ namespace Portafolio.Controllers
         }
 
 
-        private List<ProjectDTO> getProjects()
-        {
-            return new List<ProjectDTO>() { 
-                new ProjectDTO
-            {
-                Title = "Amazon",
-                Description = "E-Commerse system developed on ASP.NET Core",
-                Link = "https://amazon.com",
-                ImageUrl = "/images/amazon.png"
-            },
-               new ProjectDTO
-            {
-                Title = "New York Time",
-                Description = "Newletter page on react",
-                Link = "https://nytimes.com",
-                ImageUrl = "/images/nyt.png"
-            }
-            };
-
-        }
-
+      
         public IActionResult Privacy()
         {
             return View();
