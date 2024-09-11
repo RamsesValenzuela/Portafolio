@@ -25,7 +25,7 @@ namespace Portafolio.Controllers
                 age = 23
             };
 
-            var projects = projectsRepository.getProjects().Take(2).ToList();
+            var projects = projectsRepository.getProjects().Take(3).ToList();
 
             var model = new HomeIndexDTO() { 
                 ProjectList = projects
